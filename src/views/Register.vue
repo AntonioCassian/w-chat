@@ -3,11 +3,11 @@
     <v-col cols="6" class="d-flex flex-column justify-center align-center text-center">
       <v-sheet width="50%">
         <Title title="Register" />
-        <v-form>
+        <v-form @submit.prevent="registrar">
           <v-text-field type="text" label="Username" :rules="usernameR" v-model="user.username"></v-text-field>
           <v-text-field type="email" label="E-mail" :rules="emailR" v-model="user.email"></v-text-field>
           <v-text-field type="password" label="Password" :rules="passwordR" v-model="user.password"></v-text-field>
-          <v-btn color="primary" @click.prevent="registrar">Register</v-btn>
+          <v-btn color="primary">Register</v-btn>
           <v-alert type="error" v-if="erros.length > 0">
             <ul>
               <li v-for="erro in erros" :key="erro">{{ erro }}</li>
@@ -53,10 +53,14 @@ export default {
     };
   },
   methods: {
-    registrar() {
-      alert('ok!')
+    async registrar() {
+      try {
+        await this.$store.dispatch('Register', this.user)
+        this.$router.push({path: '/'})
+      } catch (err) {
+        console.error('Erro na requisição de login:', err);
+      }
     }
-
   }
 
 }

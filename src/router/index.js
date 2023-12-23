@@ -1,14 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import store from '@/store/store'
 
-import Login from '@/views/Login.vue'
-
-
-
+import Register from '@/views/Register.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: () => import('@/views/Home.vue') },
-  { path: '/login', name: 'login', component: Login },
+  { path: '/login', name: 'login', component: () => import('@/views/Login.vue') },
+  { path: '/register', name: 'register', component: () => import('@/views/Register.vue') },
+  { path: '/perfil', name: 'perfil', component: () => import('@/views/Perfil.vue') },
 ]
 
 const router = createRouter({
@@ -16,6 +15,7 @@ const router = createRouter({
   routes
 })
 
+/*
 router.beforeEach(async (to, from, next) => {
   if (to.name !== 'login' && !store.getters['Authorization']) {
     try {
@@ -33,6 +33,6 @@ router.beforeEach(async (to, from, next) => {
     }
   }
 })
-
+*/
 export default router;
 

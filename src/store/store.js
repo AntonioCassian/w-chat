@@ -36,8 +36,6 @@ const store = createStore({
     Authorization: state => !!state.token
   },
   actions: {
-
-
     async Register(data) {
       await api.post('/user', data)
     },
@@ -47,7 +45,7 @@ const store = createStore({
         dispatch('ActionSetToken', response.data.token)
       })
       .catch(error => {
-          console.error('Erro na requisição de login:', response.data.errors);
+          console.error('Erro na requisição de login:', error.response.data);
         });
     },
     ActionSetUser({ commit }, payload) {

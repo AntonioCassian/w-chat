@@ -33,14 +33,14 @@ export default {
     };
   },
   methods: {
-    submit() {
+   /* submit() {
       const newUser = {
         username: this.form.username,
         password: this.form.password
       }
       this.$store.dispatch('logIn', newUser)
       this.$router.push({path: '/'})
-    }
+    }*/
   }
 }
 </script>

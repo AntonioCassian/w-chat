@@ -1,6 +1,12 @@
 import { createStore } from 'vuex'
-import axios from 'axios';
-import api from '@/plugins/axios';
+
+const store = createStore({
+  state: {},
+  mutations: {},
+  getters: {},
+  actions: {},
+})
+/*import api from '@/plugins/axios';
 
 
 const auth = token => {
@@ -52,7 +58,7 @@ const store = createStore({
       commit('SET_USER', payload)
     },
     ActionSetToken({ commit }, payload) {
-      auth(payload)
+      api.defaults.headers.common['Authorization'] = `Bearer ${payload}`
       setLocalToken(payload)
       commit('SET_TOKEN', payload)
     },
@@ -101,4 +107,5 @@ const store = createStore({
   }
 })
 
+*/
 export default store;

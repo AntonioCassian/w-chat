@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import store from '@/store/store'
 
-import Register from '@/views/Register.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: () => import('@/views/Home.vue') },
@@ -15,8 +14,7 @@ const router = createRouter({
   routes
 })
 
-/*
-router.beforeEach(async (to, from, next) => {
+/*router.beforeEach(async (to, from, next) => {
   if (to.name !== 'login' && !store.getters['Authorization']) {
     try {
       await store.dispatch('ActionCheckToken')
@@ -26,7 +24,7 @@ router.beforeEach(async (to, from, next) => {
       next({ name: 'login' })
     }
   } else {
-    if (to.name === 'login' && store.getters['Authorization']) {
+    if (to.name === 'login'  && store.getters['Authorization']) {
       next({ name: 'Home' })
     } else {
       next()

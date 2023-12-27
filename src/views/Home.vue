@@ -17,6 +17,11 @@
       <Lista />
     </v-col>
     <v-col cols="7" class="pa-0">
+      <ul>
+        <li v-for="ust in user" :key="ust.id">
+          {{ ust.username }}
+        </li>
+      </ul>
       <Chat />
     </v-col>
     <v-col cols="3" class="pa-0">
@@ -34,10 +39,33 @@
 import Header from '@/components/Header/Header.vue';
 import Lista from '@/components/Listas/Lista.vue';
 import Chat from '@/components/Main/Chat.vue';
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
 export default {
   name: 'Home',
   components: { Header, Lista, Chat },
+  setup() {
+    const user = ref([]);
+    const getUSer = async () => {
+      try{
+        const response = await axios.get('/tokens')
+        user.value = response.data;
+        console.log(response.data)
 
+      } catch(err) {
+        console.log(err)
+      }
+
+    }
+
+    onMounted(() => {
+      getUSer()
+    })
+
+    return {
+      user,
+    }
+  }
 
 }
 </script>
@@ -46,6 +74,4 @@ export default {
 .dif {
   height: 100vh;
 }
-
-
 </style>

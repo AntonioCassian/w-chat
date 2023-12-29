@@ -4,13 +4,12 @@
       <v-row class="fill-height">
         <v-col cols="12" class="pt-0">
           <v-list class="list">
-
-            <v-list-item class="">
-              <v-list-item-content>
+            <v-list-item>
+              <v-card>
                 <v-sheet class="d-flex flex-row align-end justify-end mb-4" v-if="chat.message">
                   <v-card class="pa-3" max-width="350px" color="primary" dark>
                     <p class="mb-0">
-                      chat.message
+                      {{chat.message}}
                     </p>
                   </v-card>
                 </v-sheet>
@@ -30,16 +29,23 @@
                     </p>
                   </v-card>
                 </v-sheet>
-              </v-list-item-content>
+              </v-card>
             </v-list-item>
           </v-list>
 
 
         </v-col>
-        <v-app-bar offset-y style="top:auto; bottom: 0px;">
-          <v-text-field :append-outer-icon="'mdi-navigation-variant'" :prepend-icon="icon" hide-details solo
-            label="Message" type="text" v-model="chat.message">
-          </v-text-field>
+        <v-app-bar style="top:auto; bottom: 0px;">
+          <v-form style="width: 100%;">
+            <v-text-field
+             v-model="chat.message"
+             :append-icon="'mdi-navigation'"
+               label="Message"
+               type="text"
+              @click:append="sendMessage"
+              @click:clear="clearMessage">
+            </v-text-field>
+          </v-form>
         </v-app-bar>
 
       </v-row>
@@ -78,8 +84,17 @@ export default {
   top: 0;
   width: 100%;
 }
+
 .absolute {
   top: auto;
   bottom: 0;
 }
+.v-input--horizontal .v-input__append {
+    margin-inline-start: 15px;
+    margin-inline-end: 15px;
+}
+.v-text-field .v-input__details {
+  display: none;
+}
+
 </style>

@@ -1,37 +1,22 @@
 <template>
   <Header />
   <v-row class="mt-0">
-    <v-col cols="2" class="pa-0">
-      teste
-      <div>oi</div>
-      <div>oi</div>
-      <div>oi</div>
-      <div>oi</div>
-      <div>oi</div>
-      <div>oi</div>
-      <div>oi</div>
-      <div>oi</div>
-      <div>oi</div>
-      <div>oi</div>
-      <div>oi</div>
+    <v-col cols="3" class="pa-0 br">
       <Lista />
     </v-col>
-    <v-col cols="7" class="pa-0">
+    <v-col cols="8" class="pa-0 height">
       <ul>
         <li v-for="ust in user" :key="ust.id">
           {{ ust.username }}
         </li>
       </ul>
+
+      <div>
+        
+      </div>
       <Chat />
     </v-col>
-    <v-col cols="3" class="pa-0">
-      <v-list class="pa-0">
-        <v-card>
-          <v-card-title>Contatos</v-card-title>
-        </v-card>
-        <Lista />
-      </v-list>
-    </v-col>
+
   </v-row>
 </template>
 
@@ -73,5 +58,12 @@ export default {
 <style>
 .dif {
   height: 100vh;
+}
+.br{
+  border-right: 1px solid #cecece;
+}
+
+.height .v-application {
+  height: 100%;
 }
 </style>

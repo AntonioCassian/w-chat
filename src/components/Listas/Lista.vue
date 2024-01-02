@@ -1,7 +1,7 @@
 <template>
   <v-list lines="one" class="pa-0">
-    <v-list-item v-for="us in user"  :key="us.id" class="border-b pa-2 px-6" >
-      <v-sheet class="d-flex" @click="'userId'">
+    <v-list-item v-for="us in user"  :key="us.id" class="border-b pa-2 px-6" @click="$emit('user', us)">
+      <v-sheet class="d-flex" @click="sendUser">
         <v-icon v-if="!us.Photos[0]" style="font-size: 42px;" icon="mdi-account-circle-outline"></v-icon>
         <v-avatar v-if="us.Photos[0]" :image="us.Photos[0].url"></v-avatar>
         <v-list-item-content class="ms-3">
@@ -31,12 +31,17 @@ export default {
       }
     }
 
+    const sendUser = () => {
+      emit('user', userId)
+    }
+
     onMounted(() => {
       getUSer()
     })
 
     return {
       user,
+      sendUser
     }
   }
 }

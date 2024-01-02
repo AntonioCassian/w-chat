@@ -2,19 +2,10 @@
   <Header />
   <v-row class="mt-0">
     <v-col cols="3" class="pa-0 br">
-      <Lista />
+      <Lista @user="handleUser"/>
     </v-col>
     <v-col cols="8" class="pa-0 height">
-      <ul>
-        <li v-for="ust in user" :key="ust.id">
-          {{ ust.username }}
-        </li>
-      </ul>
-
-      <div>
-        
-      </div>
-      <Chat />
+      <Chat :chat="userId" />
     </v-col>
 
   </v-row>
@@ -31,6 +22,11 @@ export default {
   components: { Header, Lista, Chat },
   setup() {
     const user = ref([]);
+    const userId = ref(null);
+    const selectUser= ref(null);
+    const handleUser = (user) => {
+      userId.value = user;
+    }
     const getUSer = async () => {
       try{
         const response = await axios.get('/tokens')
@@ -49,6 +45,9 @@ export default {
 
     return {
       user,
+      handleUser,
+      selectUser,
+      userId
     }
   }
 

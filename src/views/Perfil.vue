@@ -1,14 +1,17 @@
 <template>
+  <Header />
   <v-container>
     <v-row no-gutters class="d-flex justify-center" v-for="ust in user" :key="ust.id">
-      <v-card class="text-center" dot offset-x="11" offset-y="13" width="400">
-        <v-bagde>
-          <v-avatar class="text-center mt-8 mb-3" size="220">
-            
-            <img crossorigin="anonymous"
-              :src="ust.Photos[0].url">
-          </v-avatar>
-        </v-bagde>
+      <v-card class="text-center d-flex flex-column justify-center align-center" dot offset-x="11" offset-y="13" width="400">
+
+        <v-avatar class="text-center mt-8 mb-3" size="220" label="forim">
+
+          <v-img crossorigin="anonymous" v-if="ust.Photos[0].url" :src="ust.Photos[0].url" />
+          <v-icon v-if="!ust.Photos[0]" style="font-size: 42px;" icon="mdi-account-circle-outline"></v-icon>
+        </v-avatar>
+
+          <v-file-input  label="File input" class="wid" />
+
         <v-card-title class="layout justify-center">{{ ust.username }}</v-card-title>
         <v-card-title class="layout justify-center">{{ ust.email }}</v-card-title>
       </v-card>
@@ -19,10 +22,11 @@
 <script>
 import { onMounted, ref } from 'vue';
 import axios from 'axios';
+import Header from '@/components/Header/Header.vue';
 export default {
   name: 'Perfil',
   props: { user: Object },
-  // https://s2-techtudo.glbimg.com/zAVzm6CbZ6VSmpDe76jhK7Qx73E=/0x0:1200x700/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2023/u/G/eQpsXGQB6xTlFlvJsUOw/avatar-a-lenda-de-aang.jpg
+  components: { Header },
   setup() {
     const user = ref([]);
     const getUSer = async () => {
@@ -46,3 +50,13 @@ export default {
   }
 }
 </script>
+
+<style>
+.wid {
+  width: 50%;
+}
+
+.wid .v-input__details {
+  display: none;
+}
+</style>

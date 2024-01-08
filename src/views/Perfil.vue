@@ -9,8 +9,10 @@
           <v-img crossorigin="anonymous" v-if="ust.Photos[0].url" :src="ust.Photos[0].url" />
           <v-icon v-if="!ust.Photos[0]" style="font-size: 42px;" icon="mdi-account-circle-outline"></v-icon>
         </v-avatar>
-
-          <v-file-input  label="File input" class="wid" />
+          <v-form class="wid" @submit.prevent="upLoad">
+            <v-file-input  multiple label="File input" class="wid2" @change="handleFile" type="file"/>
+            <v-btn type="submit" class="mt-3" variant="text" elevation="2" color="primary">Send</v-btn>
+          </v-form>
 
         <v-card-title class="layout justify-center">{{ ust.username }}</v-card-title>
         <v-card-title class="layout justify-center">{{ ust.email }}</v-card-title>
@@ -27,8 +29,12 @@ export default {
   name: 'Perfil',
   props: { user: Object },
   components: { Header },
+  methods: {
+  },
   setup() {
     const user = ref([]);
+    const selected = ref([])
+
     const getUSer = async () => {
       try {
         const response = await axios.get('/tokens')
@@ -40,12 +46,28 @@ export default {
       }
     }
 
+    const handleFile = (event) => {
+      console.log(event)
+      selected.value = event.target.files[0];
+    }
+
+    const upLoad = async() => {
+      try {
+
+        await axios.post('/photo', selected.value)
+      } catch(err) {
+        console.log(err)
+      }
+    }
+
     onMounted(() => {
       getUSer()
     })
 
     return {
       user,
+      upLoad,
+      handleFile
     }
   }
 }
@@ -56,7 +78,7 @@ export default {
   width: 50%;
 }
 
-.wid .v-input__details {
+.wid2 .v-input__details {
   display: none;
 }
 </style>

@@ -39,8 +39,8 @@
       </v-row>
 
       <v-row v-if="!chat" justify="center" class="fill-height height">
-        <v-col cols="12" class="pt-0 ma-2">
-          <v-sheet width="800" height="400" class="d-flex justify-center align-center flex-column">
+        <v-col cols="12" class="pt-0 ma-2 relat">
+          <v-sheet width="800" height="400" class="d-flex justify-center align-center flex-column main-absolut">
             <v-icon color="#ececec" icon="mdi-information" size="120px"></v-icon>
             <div class="text-h2 font-weight-bold" style="color: #ececec;">Select User!</div>
           </v-sheet>
@@ -65,7 +65,7 @@ export default {
     const send = async () => {
       await axios.post(`/chat/`, message.value)
     }
-    
+
     /* const getmsg = async () => {
       try {
         const response = await axios.get(`/chat/${id}`)
@@ -108,5 +108,15 @@ export default {
 
 .v-text-field .v-input__details {
   display: none;
+}
+
+.relat {
+  position: relative;
+}
+.main-absolut{
+  position: absolute;
+    top: 70px;
+    right: 120px;
+    background: #cecece;
 }
 </style>

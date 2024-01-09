@@ -4,7 +4,7 @@
     <v-col cols="3" class="pa-0 br">
       <Lista @user="handleUser"/>
     </v-col>
-    <v-col cols="8" class="pa-0 height">
+    <v-col cols="9" class="pa-0 height">
       <Chat :chat="userId" />
     </v-col>
 

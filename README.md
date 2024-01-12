@@ -16,38 +16,15 @@ pnpm install
 bun install
 ```
 
-### Compiles and hot-reloads for development
-
+### back-end:
+https://github.com/AntonioCassian/app-chat
+#### Reload back-end:
 ```
-# yarn
-yarn dev
+# npm 
+npm i
 
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# bun
-bun run dev
 ```
 
-### Compiles and minifies for production
-
-```
-# yarn
-yarn build
-
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# bun
-bun run build
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://vitejs.dev/config/).
+### Errors
+1.mandar mensagens pós o back tá com bug!
